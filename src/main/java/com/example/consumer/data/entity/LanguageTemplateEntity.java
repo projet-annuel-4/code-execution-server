@@ -13,7 +13,6 @@ public class LanguageTemplateEntity {
     private byte[] data;
     @ManyToOne
     private LanguageEntity languageEntity;
-    private boolean isActive;
 
     public LanguageTemplateEntity() {
     }
@@ -22,15 +21,6 @@ public class LanguageTemplateEntity {
         this.id = id;
         this.data = data;
         this.languageEntity = languageEntity;
-        this.isActive = isActive;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 
     public void setId(Long id) {

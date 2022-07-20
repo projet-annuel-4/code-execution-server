@@ -36,7 +36,7 @@ class RpcServer {
         CodeResponse response = null;
         System.out.println("langage : " + language);
         System.out.println(" test : " + Objects.equals(language, "java"));
-
+        System.out.println("/////////////////1");
         response = codeExecutor.executeCode(codeRequest);
 
         if( response == null){
@@ -47,8 +47,14 @@ class RpcServer {
                     "failed");
         }
 
-        redisService.save(response.getId(), gson.toJson(response));
-        return response.getId();
+        if (codeRequest.isTest()) {
+            redisService.save(codeRequest.getId(), gson.toJson(response));
+        } else {
+            redisService.save(codeRequest.getId(), gson.toJson(response));
+        }
+        System.out.println("id du code de test" + codeRequest.getId().toString());
+
+        return codeRequest.getId();
 
     }
 }

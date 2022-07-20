@@ -2,11 +2,12 @@ package com.example.consumer.dto;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.TimeToLive;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@RedisHash("CodeResponse")
+@RedisHash(value = "CodeResponse")
 public class CodeResponse implements Serializable {
     @Id
     final private String id;

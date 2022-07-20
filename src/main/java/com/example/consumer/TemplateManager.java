@@ -1,6 +1,8 @@
 package com.example.consumer;
 
 import com.example.consumer.dto.Template;
+import com.example.consumer.service.LanguageService;
+import com.example.consumer.service.LanguageTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -12,10 +14,20 @@ public class TemplateManager {
 
     @Autowired
     private static Environment env;
+    private final LanguageTemplateService languageTemplateService;
+    private final LanguageService languageService;
 
-// generaliser a une seule fonction quand y'aura la bdd
+    public TemplateManager(LanguageTemplateService languageTemplateService, LanguageService languageService) {
+        this.languageTemplateService = languageTemplateService;
+        this.languageService = languageService;
+    }
+
+    // generaliser a une seule fonction quand y'aura la bdd
 
     public static Template getTemplate(String language){
+
+
+
 
         Template template = new Template();
         if(Objects.equals(language, "java")){

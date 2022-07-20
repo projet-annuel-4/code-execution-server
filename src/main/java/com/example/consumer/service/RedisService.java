@@ -10,6 +10,7 @@ public class RedisService {
     public static final String HASH_KEY = "CodeResponse";
     private final HashOperations<String, String, Object> hashOps;
 
+
     public RedisService(final RedisTemplate<String, Object> redisTemplate) {
         this.hashOps = redisTemplate.opsForHash();
     }

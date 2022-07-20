@@ -12,7 +12,13 @@ public class ProcessManager {
     public static Map<String, ArrayList<String>> getProcessResult(Process process) throws IOException {
         Map<String, ArrayList<String>> result = new HashMap<String, ArrayList<String>>();
         result.put("outputs", getOutputs(process));
+        for( int i = 0; i < result.get("outputs").size(); i ++){
+            System.out.println(result.get("outputs").get(i));
+        }
         result.put("errors", getErrors(process));
+        for( int i = 0; i < result.get("errors").size(); i ++){
+            System.out.println(result.get("errors").get(i));
+        }
 
         return result;
     }

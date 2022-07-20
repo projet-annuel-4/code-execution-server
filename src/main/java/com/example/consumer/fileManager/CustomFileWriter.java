@@ -1,10 +1,13 @@
 package com.example.consumer.fileManager;
 
+import com.example.consumer.domain.model.Language;
 import com.example.consumer.dto.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -25,15 +28,20 @@ public class CustomFileWriter {
         Files.copy(fileCopied, copyFileDestination, StandardCopyOption.REPLACE_EXISTING);
     }
 
-    public void rewriteFile(Template template, String code) throws IOException {
-        System.out.println(env.getProperty("cust.runDirectory.path") + "\\template." + template.getExtension());
-        String pathToRewrite = env.getProperty("cust.runDirectory.path") + "\\template." + template.getExtension();
-        Path path = Paths.get(pathToRewrite);
-        Charset charset = StandardCharsets.UTF_8;
+    public File rewriteFile(byte[] template, String code, File dir, Language language) throws IOException {
+        System.out.println("/////////////////7");
 
-        String content = Files.readString(path, charset);
-        content = content.replaceAll("###CODE###", code);
-        Files.writeString(path, content, charset);
+        Charset charset = StandardCharsets.UTF_8;
+        String content = new String(template, StandardCharsets.UTF_8);
+
+        content = content.replaceAll(language.getStrToReplace(), code);
+        File fileCreated = new File(dir.getAbsolutePath() + "/execute." + language.getExtension());
+        FileWriter fileWriter = new FileWriter(fileCreated);
+        fileWriter.write(content);
+        fileWriter.close();
+        System.out.println("/////////////////8");
+
+        return fileCreated;
     }
 
     public void deleteExecutedFile(){

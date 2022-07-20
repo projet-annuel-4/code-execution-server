@@ -14,7 +14,7 @@ public class RedisConfiguration {
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
-        config.setHostName("localhost");
+        config.setHostName("host.docker.internal");
         config.setPort(6379);
         return new LettuceConnectionFactory(config);
     }

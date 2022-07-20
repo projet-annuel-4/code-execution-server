@@ -5,16 +5,34 @@ import java.util.ArrayList;
 
 public class CodeRequest implements Serializable {
 
+    private String id;
     private String code;
     private String language;
-    private ArrayList<String> input;
+    private boolean test;
     private CompilationMode mode;
 
-    public CodeRequest(String code, String language, ArrayList<String> input, CompilationMode mode) {
+    public CodeRequest(String id, String code, String language, boolean test, CompilationMode mode) {
+        this.id = id;
         this.code = code;
         this.language = language;
-        this.input = input;
+        this.test = test;
         this.mode = mode;
+    }
+
+    public boolean isTest() {
+        return test;
+    }
+
+    public void setTest(boolean test) {
+        this.test = test;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCode() {
@@ -25,20 +43,11 @@ public class CodeRequest implements Serializable {
         return language;
     }
 
-    public ArrayList<String> getInput() {
-        return input;
-    }
-
-    public CompilationMode getMode() {
-        return mode;
-    }
-
     @Override
     public String toString() {
         return "CodeRequest{" +
                 "code='" + code + '\'' +
                 ", language='" + language + '\'' +
-                ", input=" + input +
                 ", mode=" + mode +
                 '}';
     }
@@ -49,10 +58,6 @@ public class CodeRequest implements Serializable {
 
     public void setLanguage(String language) {
         this.language = language;
-    }
-
-    public void setInput(ArrayList<String> input) {
-        this.input = input;
     }
 
     public void setMode(CompilationMode mode) {
