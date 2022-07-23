@@ -8,7 +8,7 @@ public class LanguageAvailableDetails {
     public static LanguageAvailableDetails getCDetails(){
         return  new LanguageAvailableDetails(
                 "c",
-                "###CODE###"
+                "///CODE///"
         );
     }
 
