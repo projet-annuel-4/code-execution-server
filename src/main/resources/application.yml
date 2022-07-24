@@ -34,9 +34,9 @@ spring:
       use_sql_comments: false
       type: all
       disableConnectionTracking: true
-redis:
-    host: ${REDDIS_URL:host.docker.internal}
-    port: ${REDDIS_PORT:6379}
+  redis:
+      host: ${REDDIS_URL:host.docker.internal}
+      port: ${REDDIS_PORT:6379}
 jwt:
   header: Authorization
   secret:  ${JWT_SECRET}
