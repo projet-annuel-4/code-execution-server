@@ -14,7 +14,7 @@ spring:
     name: remote-code-execution-server-service
   cache:
     redis:
-      time-to-live: 20
+      time-to-live: 600000
   rabbitmq:
     host:  ${RABBITMQ_URL}
     username: ${RABBITMQ_USERNAME}
@@ -35,8 +35,8 @@ spring:
       type: all
       disableConnectionTracking: true
   redis:
-      host: ${REDDIS_URL:host.docker.internal}
-      port: ${REDDIS_PORT:6379}
+    host: ${REDDIS_URL:host.docker.internal}
+    port: ${REDDIS_PORT:6379}
 jwt:
   header: Authorization
   secret:  ${JWT_SECRET}
