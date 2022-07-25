@@ -5,15 +5,13 @@ RUN mvn clean
 COPY src ./src
 RUN ["mvn", "package", "-Dmaven.test.skip=true"]
 
-FROM openjdk:17-alpine
+FROM openjdk:17.0.2-slim-buster
 
-RUN apk add --update --no-cache\
-    nodejs \
-    build-base \
-    python3 \
-    py3-pip
-
-RUN python3 -m ensurepip
+RUN apt update
+RUN apt install -y nodejs
+RUN apt install -y python3
+RUN apt install -y build-essential
+RUN apt install -y firejail
 
 COPY . /app/
 RUN mkdir /exec

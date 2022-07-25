@@ -67,19 +67,19 @@ public class CodeExecutor {
         Map<String, ArrayList<String>> result = new HashMap<>();
         if(Objects.equals(language.getName(), "c")){
             System.out.println("COMMMMMMENCE");
-            process = Runtime.getRuntime().exec("gcc -o " + dir.getAbsolutePath() + "/exec " + fileToExecute.getAbsolutePath() );
+            process = Runtime.getRuntime().exec("firejail gcc -o " + dir.getAbsolutePath() + "/exec " + fileToExecute.getAbsolutePath() );
             result = ProcessManager.getProcessResult(process);
             if( result.get("errors").size() == 0) {
-                process = Runtime.getRuntime().exec(dir.getAbsolutePath() + "/exec ");
+                process = Runtime.getRuntime().exec("firejail " + dir.getAbsolutePath() + "/exec ");
                 result.get("outputs").addAll(ProcessManager.getProcessResult(process).get("outputs"));
                 result.get("errors").addAll(ProcessManager.getProcessResult(process).get("errors"));
             }
             return result;
         } else if (Objects.equals(language.getName(), "javascript")){
-            process = Runtime.getRuntime().exec("node " + fileToExecute.getAbsolutePath() );
+            process = Runtime.getRuntime().exec("firejail node " + fileToExecute.getAbsolutePath() );
             result = ProcessManager.getProcessResult(process);
         } else if (Objects.equals(language.getName(), "python")){
-            process = Runtime.getRuntime().exec("python3 " + fileToExecute.getAbsolutePath() );
+            process = Runtime.getRuntime().exec("firejail python3 " + fileToExecute.getAbsolutePath() );
             result = ProcessManager.getProcessResult(process);
         }
         return result;

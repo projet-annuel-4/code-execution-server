@@ -26,7 +26,12 @@ public class ProcessManager {
         BufferedReader output = new BufferedReader(new InputStreamReader(process.getInputStream()));
         ArrayList<String> outputs = new ArrayList<>();
         String outputLine;
+        var i = 0;
         while ( (outputLine = output.readLine()) != null){
+            if( i == 0){
+                i++;
+                continue;
+            }
             outputs.add(outputLine);
         }
 
@@ -37,7 +42,12 @@ public class ProcessManager {
         BufferedReader error = new BufferedReader(new InputStreamReader(process.getErrorStream()));
         ArrayList<String> errors = new ArrayList<>();
         String errorLine ;
+        var i = 0;
         while ( (errorLine = error.readLine()) != null){
+            if( i == 0){
+                i++;
+                continue;
+            }
             errors.add(errorLine);
         }
 
