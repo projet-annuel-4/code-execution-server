@@ -1,6 +1,7 @@
 package com.example.consumer.configuration;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -11,11 +12,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfiguration {
+    @Value("${spring.rabbitmq.host}")
+    private String rabbitmqHost;
 
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
-        config.setHostName("host.docker.internal");
+        config.setHostName(rabbitmqHost);
         config.setPort(6379);
         return new LettuceConnectionFactory(config);
     }
