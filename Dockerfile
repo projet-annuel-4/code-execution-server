@@ -3,15 +3,19 @@ WORKDIR /home/app
 COPY pom.xml .
 RUN mvn clean
 COPY src ./src
-RUN ["mvn", "package", "-Dmaven.test.skip=true"]
+RUN mvn package -Dmaven.test.skip=true
 
-FROM openjdk:17.0.2-slim-buster
+FROM ubuntu:18.04
 
-RUN apt update
-RUN apt install -y nodejs
-RUN apt install -y python3
-RUN apt install -y build-essential
-RUN apt install -y firejail
+RUN mkdir -p /usr/share/man/man1
+RUN DEBIAN_FRONTEND=noninteractive \
+  apt update && apt-get install --no-install-recommends -y \
+  nodejs \
+  python3 \
+  build-essential \
+  firejail
+
+RUN apt install -y default-jre
 
 COPY . /app/
 RUN mkdir /exec
