@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/executionManager")
+@RequestMapping("/api/v1/codeExecutor")
 public class ExecutionManagerController {
 
     private final LanguageService languageService;
