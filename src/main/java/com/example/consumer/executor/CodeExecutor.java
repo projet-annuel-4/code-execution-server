@@ -69,7 +69,9 @@ public class CodeExecutor {
             System.out.println("COMMMMMMENCE");
             process = Runtime.getRuntime().exec("firejail gcc -o " + dir.getAbsolutePath() + "/exec " + fileToExecute.getAbsolutePath() );
             result = ProcessManager.getProcessResult(process);
-            if( result.get("errors").size() == 0) {
+            System.out.println("ERREUR SIZE" + result.get("errors").size());
+            System.out.println("OUTPU SIZE" + result.get("outputs").size());
+            if( result.get("errors").size() == 1) {
                 process = Runtime.getRuntime().exec("firejail " + dir.getAbsolutePath() + "/exec ");
                 result.get("outputs").addAll(ProcessManager.getProcessResult(process).get("outputs"));
                 result.get("errors").addAll(ProcessManager.getProcessResult(process).get("errors"));
