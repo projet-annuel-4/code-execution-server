@@ -23,6 +23,6 @@ spring:
       use_sql_comments: false
       type: all
       disableConnectionTracking: true
-redis:
-  host: host.docker.internal
-  port: 6379
+  rabbitmq:
+    host: host.docker.internal
+    port: 6379
