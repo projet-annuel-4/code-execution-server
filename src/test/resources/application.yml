@@ -25,7 +25,7 @@ spring:
       disableConnectionTracking: true
   rabbitmq:
     host: host.docker.internal
-    port: 6379
+    port: 5672
   redis:
     host: host.docker.internal
-    port: 6379}
+    port: 6379
