@@ -12,13 +12,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfiguration {
-    @Value("${spring.rabbitmq.host}")
-    private String rabbitmqHost;
+    @Value("${spring.redis.host}")
+    private String redisHost;;
 
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         final RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
-        config.setHostName(rabbitmqHost);
+        config.setHostName(redisHost);
         config.setPort(6379);
         return new LettuceConnectionFactory(config);
     }
